@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>那須と日光、ちいさな旅のしおり ｜ EARTH BOAT & 日光東照宮 1泊2日</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#E7DEC9;
+    --page:#F5EFE1;
+    --page-edge:#EADFC7;
+    --ink:#37322A;
+    --ink-soft:#7A7059;
+    --vermilion:#B23A2E;
+    --vermilion-soft:#C7654f;
+    --cedar:#2E4A3B;
+    --gold:#B78E3C;
+    --line:#CBBE9F;
+    --tape:#9db38f;
+    --shadow:rgba(55,50,42,.18);
+    --disp:"Yuji Syuku", serif;
+    --body:"Zen Kaku Gothic New", sans-serif;
+    --hand:"Klee One", cursive;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:var(--body);
+    color:var(--ink);
+    background:var(--paper);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255,255,255,.25), transparent 40%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+  }
+  .booklet{ max-width:860px; margin:0 auto; padding:0 clamp(14px,4vw,40px); position:relative; }
+  .booklet::before{
+    content:""; position:fixed; top:0; bottom:0; left:0; width:14px;
+    background:linear-gradient(90deg, rgba(0,0,0,.10), transparent); z-index:5; pointer-events:none;
+  }
+  section{position:relative;}
+  .sheet{
+    background:var(--page); border-radius:3px;
+    padding:clamp(26px,5vw,54px); margin:26px 0;
+    box-shadow:0 2px 0 var(--page-edge), 0 10px 26px -18px var(--shadow); position:relative;
+  }
+  .sheet::after{
+    content:""; position:absolute; left:14px; top:0; bottom:0; width:1px;
+    background:repeating-linear-gradient(var(--line) 0 6px, transparent 6px 15px); opacity:.55;
+  }
+  .tape{ position:absolute; width:104px; height:30px; background:var(--tape); opacity:.72; box-shadow:0 3px 8px -4px var(--shadow); }
+  .tape::before{ content:""; position:absolute; inset:0; background:repeating-linear-gradient(90deg, rgba(255,255,255,.22) 0 2px, transparent 2px 8px); }
+
+  /* 表紙 */
+  .cover{
+    min-height:88vh; display:flex; flex-direction:column; justify-content:center;
+    padding:clamp(40px,7vw,80px) clamp(26px,5vw,60px); overflow:hidden;
+    background:radial-gradient(120% 90% at 80% 20%, rgba(183,142,60,.10), transparent 55%), var(--page);
+  }
+  .cover .eyebrow{ font-family:var(--hand); letter-spacing:.5em; color:var(--vermilion); font-size:.8rem; text-transform:uppercase; margin-bottom:auto; }
+  .cover-main{ display:flex; align-items:flex-end; gap:clamp(20px,5vw,54px); margin:auto 0; }
+  .cover-title{
+    writing-mode:vertical-rl; font-family:var(--disp);
+    font-size:clamp(3.1rem,12vw,6.2rem); line-height:1.05; color:var(--cedar);
+    letter-spacing:.08em; text-shadow:1px 1px 0 rgba(255,255,255,.4); margin:0;
+  }
+  .cover-title .accent{color:var(--vermilion);}
+  .cover-side{ padding-bottom:.6rem; }
+  .cover-sub{
+    font-family:var(--hand); font-size:clamp(1rem,3.4vw,1.35rem); color:var(--ink);
+    border-left:3px solid var(--gold); padding-left:.9em; margin:0 0 1.6em; line-height:1.7;
+  }
+  .cover-meta{ font-size:.92rem; color:var(--ink-soft); letter-spacing:.04em; }
+  .cover-meta b{ display:block; font-family:var(--disp); font-size:1.45rem; color:var(--ink); letter-spacing:.05em; font-weight:400; }
+  .stamp{
+    position:absolute; top:clamp(26px,5vw,46px); right:clamp(26px,5vw,52px);
+    width:112px; height:112px; border:2px solid var(--vermilion); border-radius:50%;
+    color:var(--vermilion); display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; transform:rotate(-11deg); opacity:.78; line-height:1.25;
+    box-shadow:inset 0 0 0 3px rgba(178,58,46,.18);
+  }
+  .stamp span:nth-child(1){font-size:.62rem;letter-spacing:.28em;}
+  .stamp span:nth-child(2){font-family:var(--disp);font-size:1.15rem;letter-spacing:.06em;}
+  .stamp span:nth-child(3){font-size:.6rem;letter-spacing:.2em;border-top:1px solid var(--vermilion);padding-top:2px;margin-top:2px;}
+
+  /* 見出し */
+  .head{ display:flex; align-items:baseline; gap:.8em; margin:0 0 1.4em; padding-left:.2em; }
+  .head .no{ font-family:var(--disp); color:var(--gold); font-size:1.1rem; letter-spacing:.2em; }
+  .head h2{ font-family:var(--disp); font-size:clamp(1.5rem,5vw,2.1rem); color:var(--cedar); margin:0; letter-spacing:.06em; font-weight:400; position:relative; }
+  .head h2::after{ content:""; position:absolute; left:0; bottom:-.28em; width:100%; height:6px; background:var(--gold); opacity:.28; }
+
+  .intro-note{ font-family:var(--hand); font-size:1.12rem; line-height:2.1; color:var(--ink); }
+  .intro-note em{ color:var(--vermilion); font-style:normal; }
+
+  /* タイムライン */
+  .day-band{
+    display:inline-flex; align-items:center; gap:.7em; background:var(--cedar); color:var(--page);
+    font-family:var(--disp); padding:.35em 1.2em .45em; border-radius:2px; letter-spacing:.14em;
+    margin:1.6em 0 1.4em; box-shadow:2px 2px 0 rgba(46,74,59,.28);
+  }
+  .day-band:first-of-type{margin-top:0;}
+  .day-band .d{font-size:1.55rem;line-height:1;}
+  .day-band small{font-size:.72rem;letter-spacing:.22em;opacity:.85;font-family:var(--body);}
+  .timeline{ position:relative; margin-left:5.6em; border-left:2px dotted var(--line); padding-left:1.6em; }
+  .stop{ position:relative; padding:0 0 1.7em; }
+  .stop::before{ content:""; position:absolute; left:calc(-1.6em - 6px); top:.55em; width:11px; height:11px; background:var(--page); border:2px solid var(--vermilion); border-radius:50%; }
+  .stop .time{ position:absolute; left:-7.1em; top:.15em; width:4.7em; text-align:right; font-family:var(--disp); color:var(--ink-soft); font-size:1.02rem; letter-spacing:.02em; }
+  .stop .title{ font-weight:700; font-size:1.06rem; color:var(--ink); display:flex; align-items:center; gap:.5em; flex-wrap:wrap; }
+  .stop .title .ico{color:var(--vermilion);flex:0 0 auto;}
+  .stop .opt{ font-family:var(--body); font-weight:500; font-size:.7rem; color:var(--gold); border:1px solid var(--gold); border-radius:2px; padding:0 .5em; letter-spacing:.08em; }
+  .stop .note{ font-family:var(--hand); color:var(--ink-soft); font-size:.96rem; line-height:1.7; margin-top:.15em; }
+  .stop.stay .title{color:var(--vermilion);}
+  .stop.drive::before{ background:var(--gold); border-color:var(--gold); }
+
+  /* 宿フィーチャー */
+  .stay-feature{ background:linear-gradient(180deg, rgba(46,74,59,.06), transparent 60%), var(--page); }
+  .stay-lead{ font-family:var(--hand); font-size:1.05rem; color:var(--ink); margin:0 0 1.2em; line-height:1.9; }
+  .stay-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:16px; margin-bottom:1em; }
+  .feat{ border:1px solid var(--line); border-radius:3px; padding:16px; background:rgba(255,255,255,.35); }
+  .feat .ico{ width:34px; height:34px; color:var(--vermilion); margin-bottom:.3em; }
+  .feat h4{ font-family:var(--disp); font-weight:400; font-size:1.08rem; color:var(--cedar); margin:.1em 0 .3em; }
+  .feat p{ font-size:.86rem; color:var(--ink-soft); margin:0; line-height:1.7; }
+  .stay-info{ font-size:.86rem; color:var(--ink-soft); border-top:1px dashed var(--line); padding-top:1em; margin-top:.4em; }
+  .stay-info b{ color:var(--ink); font-weight:700; }
+
+  /* みどころカード */
+  .spots-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:18px; }
+  .spot{ background:var(--page); border:1px solid var(--line); border-radius:3px; padding:20px 18px 18px; position:relative; box-shadow:0 8px 20px -18px var(--shadow); }
+  .spot .ico{ width:42px;height:42px;color:var(--vermilion);margin-bottom:.4em; }
+  .spot h3{ font-family:var(--disp); font-weight:400; font-size:1.2rem; color:var(--cedar); margin:.1em 0 .35em; letter-spacing:.04em; }
+  .spot p{ font-size:.9rem; color:var(--ink-soft); margin:0; line-height:1.75;}
+  .spot .pin{ position:absolute; top:14px; right:14px; font-family:var(--disp); font-size:.8rem; color:var(--gold); }
+  .spot.side{ background:rgba(183,142,60,.08); border-style:dashed; }
+  .spot.side .pin{ color:var(--vermilion); }
+
+  /* 夏に食べたいもの */
+  .food-list{ display:grid; gap:14px; }
+  .food{ display:flex; gap:16px; align-items:flex-start; padding:14px 4px; border-bottom:1px dashed var(--line); }
+  .food:last-child{ border-bottom:none; }
+  .food .ico{ flex:0 0 auto; width:44px; height:44px; color:var(--vermilion); }
+  .food h4{ font-family:var(--disp); font-weight:400; font-size:1.15rem; color:var(--cedar); margin:0 0 .1em; letter-spacing:.03em; }
+  .food p{ margin:0; font-size:.92rem; color:var(--ink-soft); line-height:1.75; }
+  .food p .where{ color:var(--vermilion); font-family:var(--hand); }
+
+  /* 地図 */
+  .map-wrap{ text-align:center; }
+  .map-wrap svg{ width:100%; height:auto; max-width:740px; }
+  .map-cap{ font-family:var(--hand); color:var(--ink-soft); font-size:.92rem; margin-top:.6em; }
+  .map-legend{ margin-top:1.1em; font-size:.86rem; color:var(--ink); line-height:1.95; text-align:left; }
+  .map-legend > div{ margin-bottom:.35em; }
+  .lg-h{ font-family:var(--disp); color:var(--page); background:var(--vermilion); border-radius:2px; padding:0 .55em; margin-right:.55em; font-size:.82rem; letter-spacing:.06em; }
+  .lg-h.nikko{ background:var(--cedar); }
+  .lg-h.buy{ background:var(--gold); }
+
+  /* 持ちもの */
+  .pack-list{ list-style:none; margin:0; padding:0; columns:2; column-gap:36px; }
+  .pack-list li{ display:flex; align-items:center; gap:.7em; padding:.42em 0; break-inside:avoid; cursor:pointer; font-size:.98rem; color:var(--ink); -webkit-tap-highlight-color:transparent; }
+  .pack-list li .box{ flex:0 0 auto; width:20px;height:20px; border:2px solid var(--cedar); border-radius:3px; position:relative; transition:background .15s; }
+  .pack-list li.done .box{ background:var(--cedar); }
+  .pack-list li.done .box::after{ content:"✓"; position:absolute; inset:0; color:var(--page); font-size:.82rem; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  .pack-list li.done .lbl{ color:var(--ink-soft); text-decoration:line-through; }
+  .pack-list li:focus-visible{ outline:2px solid var(--vermilion); outline-offset:3px; border-radius:3px;}
+
+  /* 予算 */
+  .budget{ width:100%; border-collapse:collapse; }
+  .budget td{ padding:.7em .2em; border-bottom:1px dashed var(--line); font-size:.98rem; }
+  .budget td:last-child{ text-align:right; font-family:var(--disp); color:var(--ink); letter-spacing:.03em; }
+  .budget .sum td{ border-bottom:none; border-top:2px solid var(--cedar); font-weight:700; padding-top:.9em; }
+  .budget .sum td:last-child{ color:var(--vermilion); font-size:1.25rem; }
+  .budget-note{ font-family:var(--hand); color:var(--ink-soft); font-size:.86rem; margin-top:.8em;}
+
+  /* メモ */
+  .memo{ background:repeating-linear-gradient(var(--page) 0 33px, var(--line) 33px 34px); min-height:170px; border-radius:3px; padding:8px 4px; }
+  .memo-lbl{ font-family:var(--hand); color:var(--vermilion); transform:rotate(-2deg); display:inline-block; margin-bottom:.4em; }
+
+  /* 裏表紙 */
+  .closing{ text-align:center; padding:clamp(50px,10vw,90px) 20px clamp(40px,8vw,70px); }
+  .closing .big{ font-family:var(--disp); font-size:clamp(2rem,8vw,3rem); color:var(--cedar); letter-spacing:.14em; margin:0 0 .3em; }
+  .closing .small{ font-family:var(--hand); color:var(--ink-soft); letter-spacing:.04em; }
+  footer{ text-align:center; padding:24px 0 44px; color:var(--ink-soft); font-size:.76rem; letter-spacing:.12em; }
+
+  .reveal{ opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  @media (max-width:560px){
+    .cover-main{ flex-direction:column; align-items:center; text-align:center; gap:26px;}
+    .cover-sub{ border-left:none; border-top:3px solid var(--gold); padding:.9em 0 0; }
+    .pack-list{ columns:1; }
+    .timeline{ margin-left:4.6em; }
+    .stop .time{ left:-6.1em; width:4.1em; font-size:.9rem;}
+  }
+  @media (prefers-reduced-motion:reduce){ .reveal{opacity:1;transform:none;transition:none;} html{scroll-behavior:auto;} }
+</style>
+</head>
+<body>
+<div class="booklet">
+
+  <!-- 表紙 -->
+  <section class="cover sheet">
+    <div class="stamp"><span>NASU</span><span>那須 · 日光</span><span>1泊2日</span></div>
+    <div class="eyebrow">Travel Shiori</div>
+    <div class="cover-main">
+      <h1 class="cover-title">那須と<span class="accent">日光</span></h1>
+      <div class="cover-side">
+        <p class="cover-sub">サウナと、動物と、<br>世界遺産と。<br>夏のドライブ旅。</p>
+        <div class="cover-meta">
+          ルート
+          <b>渋谷 ▸ 那須 ▸ 日光</b>
+          <span style="display:inline-block;margin-top:.7em;">出発 7:00 ｜ レンタカー ｜ 夏の週末</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- はじめに -->
+  <section class="sheet reveal">
+    <span class="tape" style="top:-12px;left:40px;transform:rotate(-6deg);"></span>
+    <div class="head"><span class="no">序</span><h2>はじめに</h2></div>
+    <p class="intro-note">
+      朝7時、渋谷から北へ。高速をひた走ると、3時間で<em>那須高原</em>。<br>
+      1日目は動物たちに会って、宿は森の中の<em>プライベートサウナ</em>と硫黄泉へ。<br>
+      2日目はチーズケーキを手に入れて、<em>日光東照宮</em>へ足をのばす。<br>
+      走って、ととのって、食べる。夏の1泊2日のしおりです。
+    </p>
+  </section>
+
+  <!-- スケジュール -->
+  <section class="sheet reveal">
+    <div class="head"><span class="no">壱</span><h2>旅のながれ</h2></div>
+
+    <div class="day-band"><span class="d">1</span><span>日目</span><small>DAY&nbsp;ONE</small></div>
+    <div class="timeline">
+      <div class="stop drive">
+        <span class="time">7:00</span>
+        <div class="title"><span class="ico">▶</span>渋谷・本町 出発</div>
+        <div class="note">レンタカーで北へ。首都高 → 東北道。SAで休憩しながら約3時間。</div>
+      </div>
+      <div class="stop">
+        <span class="time">10:00</span>
+        <div class="title">那須どうぶつ王国 <span class="opt">時間があれば</span></div>
+        <div class="note">カピバラの湯、猛禽ショー、エサやり。ランチも園内で。所要3時間〜／駐車1,000円。</div>
+      </div>
+      <div class="stop drive">
+        <span class="time">14:15</span>
+        <div class="title">那須湯本へ移動</div>
+        <div class="note">王国から宿へ。途中でスーパーに寄って買い出しを。</div>
+      </div>
+      <div class="stop">
+        <span class="time">14:30</span>
+        <div class="title"><span class="ico">🛒</span>スーパーで買い出し</div>
+        <div class="note">宿はキッチン・BBQ・焚き火つき。夜と朝の食材・飲みものをここで。候補は下の地図に3軒。</div>
+      </div>
+      <div class="stop stay">
+        <span class="time">15:00</span>
+        <div class="title"><span class="ico">♨</span>EARTH BOAT 那須 チェックイン</div>
+        <div class="note">サウナ → 水風呂 → 硫黄泉「湖月の湯」でととのう。夜は焚き火で那須黒毛和牛のBBQ。</div>
+      </div>
+    </div>
+
+    <div class="day-band"><span class="d">2</span><span>日目</span><small>DAY&nbsp;TWO</small></div>
+    <div class="timeline">
+      <div class="stop">
+        <span class="time">8:00</span>
+        <div class="title"><span class="ico">♨</span>朝サウナ・朝風呂</div>
+        <div class="note">起きたらまずサウナへ。水風呂と硫黄泉「湖月の湯」で朝からととのえて、チェックアウトまでのんびり。</div>
+      </div>
+      <div class="stop drive">
+        <span class="time">10:00</span>
+        <div class="title">チェックアウト</div>
+        <div class="note">名残おしいけれど出発。</div>
+      </div>
+      <div class="stop">
+        <span class="time">10:20</span>
+        <div class="title"><span class="ico">◆</span>チーズガーデン那須本店</div>
+        <div class="note">御用邸チーズケーキをお買いもの。夏はレモン味も。那須街道沿い・那須IC 3km。</div>
+      </div>
+      <div class="stop drive">
+        <span class="time">10:50</span>
+        <div class="title">日光へ移動</div>
+        <div class="note">東北道 → 日光道、約1.5〜2時間。長丁場、運転は交代で。</div>
+      </div>
+      <div class="stop">
+        <span class="time">12:45</span>
+        <div class="title">昼食 ｜ 日光ゆば料理</div>
+        <div class="note">夏は冷やしゆばもさっぱり。ゆば丼やきぬラーメンも。</div>
+      </div>
+      <div class="stop">
+        <span class="time">13:45</span>
+        <div class="title">日光東照宮・二社一寺</div>
+        <div class="note">陽明門、眠り猫、三猿。神橋も渡って世界遺産をめぐる（拝観 約2h）。</div>
+      </div>
+      <div class="stop">
+        <span class="time">15:45</span>
+        <div class="title"><span class="ico">❆</span>天然氷のかき氷でひと休み</div>
+        <div class="note">日光名物、ふわふわの天然氷。松月氷室などで涼をとる。</div>
+      </div>
+      <div class="stop drive">
+        <span class="time">16:30</span>
+        <div class="title"><span class="ico">▶</span>帰路（日光 → 渋谷 約2.5h）</div>
+        <div class="note">19時ごろ帰宅の予定。おつかれさまでした。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 宿 -->
+  <section class="sheet stay-feature reveal">
+    <span class="tape" style="top:-12px;right:56px;transform:rotate(5deg);background:var(--vermilion-soft);"></span>
+    <div class="head"><span class="no">弐</span><h2>今回の宿</h2></div>
+    <p class="stay-lead">EARTH BOAT 那須 — 那須湯本、池のほとりに佇む全19棟のアウトドアホテル。サウナ着のまま森を歩き、頭を空っぽにする一日。</p>
+    <div class="stay-grid">
+      <div class="feat">
+        <svg class="ico" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M8 30V14l12-6 12 6v16M8 30h24M14 30v-8h12v8M20 12v2"/><path d="M13 22c1-2 3-2 4 0M23 22c1-2 3-2 4 0"/></svg>
+        <h4>プライベートサウナ</h4>
+        <p>全室に薪ストーブのフィンランド式サウナ。誰にも気兼ねなく、好きな温度で。</p>
+      </div>
+      <div class="feat">
+        <svg class="ico" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 26c3-2 5-2 8 0s5 2 8 0 5-2 8 0 5 2 4 0M6 32c3-2 5-2 8 0s5 2 8 0 5-2 8 0"/><path d="M14 18c-1-3 1-4 0-7M20 16c-1-3 1-4 0-7M26 18c-1-3 1-4 0-7"/></svg>
+        <h4>那須湯本の硫黄泉</h4>
+        <p>貸し切り露天「湖月の湯」を無料で。掛け流しの温泉でサウナのあとをととのえる。</p>
+      </div>
+      <div class="feat">
+        <svg class="ico" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 34c6-4 9-9 9-14a9 9 0 0 0-18 0c0 5 3 10 9 14zM20 12c-2 3-2 5 0 8 2-3 2-5 0-8z"/></svg>
+        <h4>焚き火とForking</h4>
+        <p>枝に刺した食材を炎であぶる原始的な食体験。夜は那須黒毛和牛のBBQも。</p>
+      </div>
+    </div>
+    <p class="stay-info">
+      <b>住所</b> 栃木県那須郡那須町湯本213-989 ｜ <b>IN</b> 15:00 / <b>OUT</b> 10:00 ｜ 那須IC より約20分・那須塩原駅より約40分<br>
+      <b>メモ</b> 水着・タオル・サンダルは備え付け。アーリーチェックイン（14:00）は予約時オプション。全室ペット可。
+    </p>
+  </section>
+
+  <!-- 買い出し -->
+  <section class="sheet reveal">
+    <span class="tape" style="top:-12px;left:52px;transform:rotate(-5deg);background:var(--tape);"></span>
+    <div class="head"><span class="no">参</span><h2>買い出し（宿の前に）</h2></div>
+    <p style="font-family:var(--hand);color:var(--ink-soft);margin:0 0 1.3em;line-height:1.9;">宿はキッチン・BBQ・焚き火つき。1日目の夕食と、飲みもの・おつまみをここで仕入れて。地図の①③（②は見どころ⑥の友愛の森）。</p>
+    <div class="spots-grid">
+      <div class="spot">
+        <span class="pin">①</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h4l4 22h24M14 30l-2-14h30l-3 12H14M18 40a2 2 0 1 0 .1 0M34 40a2 2 0 1 0 .1 0"/></svg>
+        <h3>スーパーダイユー 那須高原店</h3>
+        <p>本命。那須街道沿いで宿への通り道。8:00〜21:00と長く開き、お酒も充実。BBQの買い出しにぴったり。</p>
+      </div>
+      <div class="spot">
+        <span class="pin">②</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 20l16-10 16 10M12 20v18h24V20M20 38V28h8v10M14 16h20"/></svg>
+        <h3>那須ロイヤル高原マルシェ</h3>
+        <p>友愛の森の産直マルシェ。那須の野菜・BBQ肉・チーズ・地酒がそろう。9:00〜17:00。※寄り道スポットとしても（次ページ）。</p>
+      </div>
+      <div class="spot">
+        <span class="pin">③</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h4l4 22h24M14 30l-2-14h30l-3 12H14M18 40a2 2 0 1 0 .1 0M34 40a2 2 0 1 0 .1 0"/></svg>
+        <h3>ザ・ビッグ 那須</h3>
+        <p>イオン系の大型ディスカウント。安くまとめ買いでき、お酒も豊富。8:00〜21:00。少し南寄りの寄り道。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- みどころ・寄り道 -->
+  <section class="sheet reveal">
+    <div class="head"><span class="no">肆</span><h2>みどころ・寄り道</h2></div>
+    <div class="spots-grid">
+      <div class="spot">
+        <span class="pin">日光</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M8 18h32M11 18v22M37 18v22M6 18l18-8 18 8M11 40h26M17 18v6M31 18v6"/></svg>
+        <h3>日光東照宮</h3>
+        <p>徳川家康をまつる世界遺産。陽明門・眠り猫・三猿は必見。今回の主役。</p>
+      </div>
+      <div class="spot">
+        <span class="pin">日光</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 34h36M10 34V20l6-4 6 4v14M28 34V16l8-5v23M13 24h2M13 29h2"/></svg>
+        <h3>二社一寺・神橋</h3>
+        <p>輪王寺・二荒山神社と、朱塗りの神橋。東照宮とあわせて歩ける近さ。</p>
+      </div>
+      <div class="spot">
+        <span class="pin">那須</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 40c0-8 6-12 14-12s14 4 14 12M18 20a4 4 0 1 0 0-.1M30 20a4 4 0 1 0 0-.1M24 26v4"/></svg>
+        <h3>那須どうぶつ王国</h3>
+        <p>約600頭羽の動物と触れ合える。カピバラの湯やショーも。1日目のメイン。</p>
+      </div>
+      <div class="spot">
+        <span class="pin">那須・寄り道</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 20l16-10 16 10M12 20v18h24V20M14 16h20M18 38V28h5v10M27 26h6v6h-6z"/></svg>
+        <h3>道の駅 那須高原友愛の森</h3>
+        <p>産直市場に那須の野菜やとちおとめ、地元グルメの食事処、ソフトクリームも。買い出し②を兼ねた、寄って楽しい休憩スポット。</p>
+      </div>
+      <div class="spot side">
+        <span class="pin">かわりに</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 38l14-24 8 12 5-7 9 19zM6 30c4-3 7-3 10 0M30 22c3-2 5-2 8 0M14 14a3 3 0 1 0 .1 0"/></svg>
+        <h3>茶臼岳・那須ロープウェイ</h3>
+        <p>那須岳の主峰。ロープウェイで一気に上がり、夏でも涼しい火山の稜線へ。宿から近くアクティブ派に。</p>
+      </div>
+      <div class="spot side">
+        <span class="pin">かわりに</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c0-3 3-6 6-6s6 3 6 6M14 22v10h8V22M28 20l6-3 6 3v14h-12M32 26h4M18 20v.1"/></svg>
+        <h3>南ヶ丘牧場</h3>
+        <p>入場無料の牧場。動物とのふれあいや釣り、名物の濃厚ソフトとプリン。宿の近くでのんびり派に。</p>
+      </div>
+      <div class="spot">
+        <span class="pin">那須</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 42V14l14-6 14 6v28M10 42h28M16 42V22h6v20M26 42V22h6v20M18 15l6-3 6 3"/></svg>
+        <h3>藤城清治美術館</h3>
+        <p>光と影でつくる「影絵」の世界。天井のプロジェクションマッピングも美しい、評価の高い美術館。雨でも楽しめる（火曜休）。</p>
+      </div>
+      <div class="spot">
+        <span class="pin">那須</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6l14 10v22H10V16zM24 6v32M10 22h28M17 16v22M31 16v22"/></svg>
+        <h3>那須ステンドグラス美術館</h3>
+        <p>中世の館のような建物に、色とりどりのステンドグラスのランプ。教会のパイプオルガンやアンティークオルゴールも（水曜休）。</p>
+      </div>
+      <div class="spot side">
+        <span class="pin">寄り道</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6v22M30 6v22M18 6c-4 4-4 10 0 14M30 6c4 4 4 10 0 14M12 30c3 5 8 8 12 8s9-3 12-8"/></svg>
+        <h3>華厳の滝・中禅寺湖</h3>
+        <p>元気があれば奥日光へ。いろは坂の先、夏でも涼しい滝と湖。半日プラスで。</p>
+      </div>
+      <div class="spot side">
+        <span class="pin">寄り道</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40V16l8-4 8 4v24M24 40V22l8-4 8 4v18M8 40h32M13 22h3M13 30h3M31 28h3"/></svg>
+        <h3>日光田母沢御用邸</h3>
+        <p>“御用邸つながり”の記念公園。緑に囲まれた夏の別邸をのんびり散策。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 夏に食べたいもの -->
+  <section class="sheet reveal">
+    <span class="tape" style="top:-12px;left:70px;transform:rotate(-4deg);background:var(--gold);opacity:.6;"></span>
+    <div class="head"><span class="no">伍</span><h2>夏に食べたいもの</h2></div>
+    <div class="food-list">
+      <div class="food">
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 22h20l-8 18-2 0zM14 22c0-6 5-10 10-10s10 4 10 10M18 16c1-3 3-4 6-4M20 30h8M18 25h12"/></svg>
+        <div>
+          <h4>日光 天然氷のかき氷</h4>
+          <p>全国でも数軒の天然氷の蔵元、その3軒が日光に。ふわふわで溶けても薄まらない別格の一杯。<span class="where">▸ 松月氷室・四代目徳次郎 ほか</span></p>
+        </div>
+      </div>
+      <div class="food">
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 30c0-7 6-11 14-11s14 4 14 11M10 30c0 4 6 7 14 7s14-3 14-7M18 22c1-2 3-3 5-3"/><path d="M14 34l2 6M34 34l-2 6M24 37v5"/></svg>
+        <div>
+          <h4>日光ゆば料理</h4>
+          <p>大豆の旨みを重ねた名物。夏は冷やしゆばやゆば丼でさっぱりと。揚げゆばまんじゅうの食べ歩きも。<span class="where">▸ 東照宮まわり</span></p>
+        </div>
+      </div>
+      <div class="food">
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20c0-3 3-6 6-6s6 3 6 6c3 0 5 2 5 5s-2 5-5 5H18c-3 0-5-2-5-5s2-5 5-5zM20 30l4 12 4-12"/></svg>
+        <div>
+          <h4>那須高原のソフトクリーム</h4>
+          <p>牧場地帯・那須ならではの濃厚ミルク。ドライブの合間のクールダウンに。<span class="where">▸ 那須高原の牧場</span></p>
+        </div>
+      </div>
+      <div class="food">
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 34l4-18 24 0 4 18zM12 16l6-6 12 0 6 6M18 24h.1M26 22h.1M22 28h.1"/></svg>
+        <div>
+          <h4>御用邸チーズケーキ</h4>
+          <p>しっとり濃厚なベイクド。常温で持ち帰れておみやげに最適。夏はレモンの季節限定も。<span class="where">▸ チーズガーデン那須本店</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ルート地図 -->
+  <section class="sheet reveal">
+    <div class="head"><span class="no">陸</span><h2>ルート地図</h2></div>
+    <div class="map-wrap">
+      <svg viewBox="0 0 720 480" role="img" aria-label="旅のルート地図（見どころ入り）">
+        <!-- エリアの下地 -->
+        <ellipse cx="530" cy="150" rx="200" ry="130" fill="#B23A2E" opacity="0.05"/>
+        <ellipse cx="150" cy="325" rx="130" ry="80" fill="#2E4A3B" opacity="0.06"/>
+        <!-- 山（那須連山） -->
+        <path d="M470 60 l30 44 l-60 0 z" fill="none" stroke="#2E4A3B" stroke-width="2" opacity="0.3"/>
+        <path d="M512 80 l24 34 l-48 0 z" fill="none" stroke="#2E4A3B" stroke-width="2" opacity="0.3"/>
+
+        <!-- ルート -->
+        <path d="M370 452 C 300 350, 340 210, 408 148 S 520 108, 565 105"
+              fill="none" stroke="#B23A2E" stroke-width="3" stroke-dasharray="2 12" stroke-linecap="round" opacity="0.85"/>
+        <path d="M565 105 C 560 175, 548 210, 548 240 C 440 295, 260 305, 165 322 C 250 405, 320 438, 370 452"
+              fill="none" stroke="#7A7059" stroke-width="2.4" stroke-dasharray="2 11" stroke-linecap="round" opacity="0.7"/>
+
+        <!-- エリア名 -->
+        <text x="600" y="46" font-family="Yuji Syuku, serif" font-size="17" fill="#B23A2E" opacity="0.55" text-anchor="middle">那須エリア</text>
+        <text x="120" y="270" font-family="Yuji Syuku, serif" font-size="17" fill="#2E4A3B" opacity="0.55" text-anchor="middle">日光エリア</text>
+
+        <!-- 渋谷 -->
+        <circle cx="370" cy="452" r="7" fill="#37322A"/>
+        <text x="370" y="474" font-family="Yuji Syuku, serif" font-size="16" fill="#37322A" text-anchor="middle">渋谷</text>
+        <text x="370" y="438" font-family="Zen Kaku Gothic New, sans-serif" font-size="11" fill="#B23A2E" text-anchor="middle" font-weight="700">START 7:00</text>
+
+        <!-- 見どころ 番号ピン -->
+        <g>
+          <circle cx="505" cy="68" r="11" fill="#B23A2E"/>
+          <circle cx="565" cy="105" r="13" fill="#B23A2E"/>
+          <circle cx="518" cy="132" r="11" fill="#B23A2E"/>
+          <circle cx="600" cy="128" r="11" fill="#B23A2E"/>
+          <circle cx="618" cy="188" r="11" fill="#B23A2E"/>
+          <circle cx="500" cy="198" r="11" fill="#B23A2E"/>
+          <circle cx="408" cy="148" r="11" fill="#B23A2E"/>
+          <circle cx="548" cy="240" r="11" fill="#B23A2E"/>
+          <circle cx="165" cy="322" r="11" fill="#2E4A3B"/>
+          <circle cx="132" cy="350" r="11" fill="#2E4A3B"/>
+          <circle cx="72" cy="302" r="11" fill="#2E4A3B"/>
+          <circle cx="202" cy="350" r="11" fill="#2E4A3B"/>
+        </g>
+        <g fill="#F5EFE1" font-family="Zen Kaku Gothic New, sans-serif" font-size="12" font-weight="700" text-anchor="middle">
+          <text x="505" y="72">1</text>
+          <text x="565" y="110" font-size="14">2</text>
+          <text x="518" y="136">3</text>
+          <text x="600" y="132">4</text>
+          <text x="618" y="192">5</text>
+          <text x="500" y="202">6</text>
+          <text x="408" y="152">7</text>
+          <text x="548" y="244">8</text>
+          <text x="165" y="326">9</text>
+          <text x="132" y="354">10</text>
+          <text x="72" y="306">11</text>
+          <text x="202" y="354">12</text>
+        </g>
+        <text x="583" y="109" font-family="Zen Kaku Gothic New, sans-serif" font-size="11" fill="#B23A2E" font-weight="700">泊 ♨</text>
+
+        <!-- 買い出しスーパー -->
+        <g fill="#B78E3C">
+          <circle cx="452" cy="222" r="9"/>
+          <circle cx="625" cy="262" r="9"/>
+        </g>
+        <g fill="#F5EFE1" font-family="Zen Kaku Gothic New, sans-serif" font-size="11" font-weight="700" text-anchor="middle">
+          <text x="452" y="226">①</text>
+          <text x="625" y="266">③</text>
+        </g>
+      </svg>
+      <div class="map-legend">
+        <div><span class="lg-h">那須</span>1 茶臼岳・ロープウェイ ／ 2 EARTH BOAT（宿）／ 3 藤城清治美術館 ／ 4 南ヶ丘牧場 ／ 5 ステンドグラス美術館 ／ 6 友愛の森 ／ 7 どうぶつ王国 ／ 8 チーズガーデン</div>
+        <div><span class="lg-h nikko">日光</span>9 東照宮 ／ 10 二社一寺・神橋 ／ 11 華厳の滝・中禅寺湖 ／ 12 田母沢御用邸</div>
+        <div><span class="lg-h buy">買い出し</span>① スーパーダイユー ／ ② 友愛の森マルシェ（＝6）／ ③ ザ・ビッグ那須</div>
+      </div>
+      <p class="map-cap">＊おおまかな位置関係です。実線＝1日目、点線＝2日目。番号は上のリストと対応。</p>
+    </div>
+  </section>
+
+  <!-- 持ちもの -->
+  <section class="sheet reveal">
+    <div class="head"><span class="no">漆</span><h2>持ちものリスト</h2></div>
+    <ul class="pack-list" id="packList">
+      <li tabindex="0"><span class="box"></span><span class="lbl">運転免許証（レンタカー）</span></li>
+      <li tabindex="0"><span class="box"></span><span class="lbl">着替え（1泊分）</span></li>
+      <li tabindex="0"><span class="box"></span><span class="lbl">洗面・化粧ポーチ</span></li>
+      <li tabindex="0"><span class="box"></span><span class="lbl">常備薬・絆創膏</span></li>
+      <li tabindex="0"><span class="box"></span><span class="lbl">モバイルバッテリー</span></li>
+      <li tabindex="0"><span class="box"></span><span class="lbl">カメラ</span></li>
+      <li tabindex="0"><span class="box"></span><span class="lbl">現金（拝観料・駐車場）</span></li>
+      <li tabindex="0"><span class="box"></span><span class="lbl">保冷バッグ（チーズケーキ用）</span></li>
+      <li tabindex="0"><span class="box"></span><span class="lbl">日焼け止め・帽子</span></li>
+      <li tabindex="0"><span class="box"></span><span class="lbl">歩きやすい靴</span></li>
+      <li tabindex="0"><span class="box"></span><span class="lbl">薄い上着（奥日光は涼しい）</span></li>
+      <li tabindex="0"><span class="box"></span><span class="lbl">御朱印帳</span></li>
+    </ul>
+  </section>
+
+  <!-- メモ -->
+  <section class="sheet reveal">
+    <div class="head"><span class="no">捌</span><h2>旅のメモ</h2></div>
+    <span class="memo-lbl">＿ 食べたいお店・買いたいもの ＿</span>
+    <div class="memo" aria-hidden="true"></div>
+  </section>
+
+  <!-- 裏表紙 -->
+  <section class="closing reveal">
+    <p class="big">いってらっしゃい</p>
+    <p class="small">— よい旅を。ととのって、おいしい夏を。 —</p>
+  </section>
+
+  <footer>那須と日光、ちいさな旅のしおり ｜ NASU × NIKKO TRAVEL SHIORI</footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('#packList li').forEach(function(li){
+    function toggle(){ li.classList.toggle('done'); }
+    li.addEventListener('click', toggle);
+    li.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold:0.12 });
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+</script>
+</body>
+</html>
